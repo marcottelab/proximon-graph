@@ -1,4 +1,4 @@
-name: operon_graph
+name: proximon_graph
 channels:
   - defaults
 dependencies:
