@@ -5,7 +5,7 @@ ProximonGraph constructs protein networks where nodes are homolog clusters and e
 
 ## Overview
 
-This pipeline takes PROST clustering results and Prokka GFF annotations and produces a graph where **nodes are protein clusters** (ortholog groups) and **edges connect clusters whose members are genomically adjacent** (operonic neighbors). The resulting graph can be filtered, queried, laid out, and explored interactively.
+This pipeline takes PROST pairwise results and GFF annotations (from Prokka or otherwise) and produces a graph where **nodes are homologous protein clusters** (~ortholog and paralog groups) and **edges connect clusters whose members are genomically adjacent** (genomic neighbors). The resulting graph can be filtered, queried, laid out, and explored interactively.
 
 **Core workflow:**
 
@@ -43,25 +43,12 @@ summarize_proximon_graph_parameter_sweep.py  →  re-aggregate or summarize a si
 
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
 
-### Create the environment
+### Create and activate the environment
 
 ```bash
-conda create -n operon_graph python=3.10
-conda activate operon_graph
-
-# Core dependencies
-pip install networkx pandas
-
-# Optional: Graphviz-based layouts for large hairball components
-conda install -c conda-forge graphviz pygraphviz
+conda env create -f environment.yml
+conda activate proximon_graph
 ```
-
-### Verify
-
-```bash
-python -c "import networkx, pandas; print('OK')"
-```
-
 ---
 
 ## 2. Build the Graph — `proximon_graph_builder.py`
